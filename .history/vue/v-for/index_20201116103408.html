@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/TestVue2/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/TestVue2/vue/vue.min.js"></script>
+<script type="text/javascript" src="/TestVue2/vue/axios.min.js"></script>
+
+
+<script type="text/javascript">
+
+window.onload=function(){
+	var app=new Vue({
+		  el:"#app",
+		  data:{
+			 message:"hello vue"
+		 },methods:{
+			 myclick:function(){
+				 var _this=this;
+				 $.post("/TestVue2/HelloServlet","message="+ this.message,function(ret){
+					 
+					 var data=$.parseJSON(ret);
+					 
+					 console.log(data);
+					 
+					 console.log(data.message);
+					 _this.message=data.message;
+				 });
+				
+			 },
+			 myclick1:function(){
+				 var _this=this;
+				 
+				 axios.get("/TestVue2/HelloServlet",{params:{message: this.message}}).then(function(ret){
+ 					
+					 console.log(ret);
+					 
+					 console.log(ret.data.message);
+					 
+					 _this.message=ret.data.message;
+					 
+				 });
+					
+				 },
+				 myclick2:function(){
+					 var _this=this;
+					 var params=new URLSearchParams();//模拟表单数据，提交 参数兼容性问题
+					 params.append("message", this.message);
+					 
+					 axios.post("/TestVue2/HelloServlet",params).then((ret)=>{
+	 					
+						 console.log(ret);
+						 
+						 console.log(ret.data.message);
+						 
+						 _this.message=ret.data.message;
+						 
+					 });
+						
+				}
+				 
+			 
+		 }
+		  
+		  
+	  });
+	
+}
+	
+
+
+
+
+</script>
+
+</head>
+
+<div id="app">
+  {{message}}
+  <button v-on:click="myclick2">点我</button>
+  
+
+  
+  
+</div>
+
+
+
+</body>
+</html>

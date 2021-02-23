@@ -1,0 +1,20 @@
+<div id="app">
+    <div :v-for="(value, name, index) in userInfo">
+        {{ index }}. {{ name }}: {{ value }}
+    </div>
+</div>
+<script src="./vue.js"></script>
+</script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            userInfo : {
+                name: '张三',
+                age: 18,
+                sex: 'female'
+            }
+        }
+    })
+    // console.log(app)
+</script>

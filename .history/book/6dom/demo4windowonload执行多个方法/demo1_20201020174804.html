@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function name1 () {
+            console.log(1)
+        }
+        function name2 (){
+            console.log(2)
+        }
+        window.onload = name1()
+        window.onload = name2() //书上写这么写不行，但试验时可以的
+        window.onload = function () {
+            name1()
+            name2()
+        }
+    </script>
+</body>
+</html>

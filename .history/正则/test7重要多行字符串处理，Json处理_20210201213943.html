@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload = () => {
+           let str = `
+            #1 js,200元 #
+            #2 php,300元 #
+            #9 houdunren.com # 一二三
+            #3 node.js,180元 #
+           `
+           console.log(str.match(/#\d\s\[a-z]+/))
+        }
+    </script>
+</body>
+</html>

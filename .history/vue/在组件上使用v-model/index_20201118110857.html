@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <zi></zi>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('zi',{
+            props:['checked'],
+            template: `
+                <input
+                type="checkbox"
+                v-bind:checked="checked"
+                v-on:change="$emit('change', $event.target.checked)"
+                >
+            `
+        })
+        new Vue({
+            el:'#app',
+            data () {
+                return {
+                    checked: false,
+                    ch: false
+                }
+            }
+        })
+    </script>
+</body>
+</html>

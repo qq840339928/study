@@ -1,0 +1,4 @@
+moudle.exports = {
+    entry: '',
+    output: ''
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 title="h1">what to buy</h1>
+    <p title="p">Dont't forget to buy this stuff</p>
+    <ul id="purchases">
+        <li title="l1">A tin of beans</li>
+        <li class="sale" title="l2">Cheese</li>
+        <li class="sale" title="l3">Milk</li>
+    </ul>
+    <script>
+        // let l1 = document.getElementById('purchases')
+        // console.log(l1)
+        // let l2 = document.getElementsByClassName(l1, 'sale')
+        // console.log(l2)
+        let arr = document.getElementsByTagName('li')
+        console.log(arr)
+        console.log(typeof(arr))
+        console.log(arr.length)
+        for (let index = 0; index < arr.length; index++) {
+            const element = arr[index]
+            console.log(element.getAttribute('title'))
+        }
+    </script>
+</body>
+</html>

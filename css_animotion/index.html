@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>碰撞动画</title>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    var div = document.querySelector('div')
+    var speedX = 3
+    var speedY = 3
+    function move () {
+        // var currentLeft = (window.getComputedStyle(div))
+        var currentLeft = (div.getAttribute('style'))
+        console.log(currentLeft)
+        console.log(currentLeft.left)
+        var left = currentLeft + speedX
+        div.style.left = left + 'px'
+    }
+    move()
+    // setInterval(() => {
+    //     move()
+    // }, 200);
+</script>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        overflow: hidden;
+    }
+    div{
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        width: 100px;
+        height: 100px;
+        background-color: black;
+    }
+</style>
+</html>

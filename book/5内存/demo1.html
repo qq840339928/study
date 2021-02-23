@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script> //内存指向问题。指向同一对象，修改这个对象，则另一个也改变
+        let obj1 = new Object()
+        obj1.name = 'zhangsan'
+        let obj2 = obj1
+        console.log(obj2.name)
+        obj1.name = 'lisi'
+        console.log(obj2.name)
+    </script>
+</body>
+</html>

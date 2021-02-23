@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+function loadData(url, cfunc) {
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = cfunc;
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+};
+ 
+function readFile(url) {
+  loadData(url, function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      console.log('读取的数据 ==== ', xmlhttp.responseText);
+      return xmlhttp.responseText;
+    } else {
+      return '';
+    }
+  })
+}
+window.onload = ('c:\\test2.doc')
+    </script>
+</body>
+</html>

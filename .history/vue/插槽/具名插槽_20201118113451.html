@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <zi>
+            <template v-slot:name1>
+                <div>
+                    name1
+                </div>
+            </template>
+            <template v-slot:name2>
+                <div>
+                    name2
+                </div>
+            </template>
+        </zi>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('zi',{
+            data () {
+                return {
+                }
+            },
+            template:`
+                <div>
+                    <button>点击</button>
+                    <slot name='name1'></slot>
+                    <slot name='name2'></slot>
+                </div>
+            `
+        })
+        new Vue({
+            el:'#app',
+            data () {
+                return {
+                    messageFu:'父'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

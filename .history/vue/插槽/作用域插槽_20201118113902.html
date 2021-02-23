@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <zi>
+            </template>
+        </zi>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('zi',{
+            data () {
+                return {
+                    message:'子'
+                }
+            },
+            template:`
+                <div>
+                    <button>点击</button>
+                    <slot name='name1' :message='message'></slot>
+                </div>
+            `
+        })
+        new Vue({
+            el:'#app',
+            data () {
+                return {
+                }
+            }
+        })
+    </script>
+</body>
+</html>

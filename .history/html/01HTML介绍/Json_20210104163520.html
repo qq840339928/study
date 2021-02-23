@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>把 JavaScript 对象转换为 JSON 字符串，然后发送到服务器。</h2>
+
+<script>
+var myObj = { "name":"Bill Gates",  "age":62, "city":"Seattle" };
+var myJSON = JSON.stringify(myObj);
+window.location = "/demo/demo_json.php?x=" + myJSON;
+</script>
+
+</body>
+</html>

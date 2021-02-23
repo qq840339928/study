@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="testdiv">
+        <p>This is <em>my</em> content.</p>
+    </div>
+
+    <script>
+        // 1.innerHTML属性
+        var testdiv = document.getElementById('testdiv')
+        // alert(testdiv.innerHTML)
+        // testdiv.innerHTML = '<p>新内容</p>'
+        // 2.createElement
+        var p = document.createElement('p')
+        var info = 'nodeName:' + p.nodeName + ' nodeType:' + p.nodeType
+        alert(info)
+        // 插入到dom里面
+        // 3.appendChild
+        testdiv.appendChild(p)
+    </script>
+</body>
+</html>

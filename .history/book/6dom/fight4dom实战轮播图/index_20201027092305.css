@@ -1,0 +1,17 @@
+#box{
+    width: 250px;
+    height: 280px;
+    position: relative;
+    margin: 0 auto;
+    top: 50px;
+    box-shadow: 0 0 4px 4px #ccc;
+    overflow: hidden;
+}
+#box ul{
+    width: 1025px;
+    height: 280px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 1s left; /*chrome*/
+}
