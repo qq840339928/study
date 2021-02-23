@@ -1,0 +1,17 @@
+{
+  "name": "firstwebpack",
+  "version": "1.0.0",
+  "description": "第一个",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^2.0.2",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.7"
+  }
+}
