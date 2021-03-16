@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+var box = document.querySelector('.box');
+//鼠标拖拽进入该区域
+box.addEventListener('dragenter', function(){
+    box.innerHTML = '松开鼠标';     //区域内样式变化
+}, false);
+ 
+//鼠标拖拽离开该区域
+box.addEventListener('dragleave', function(){
+    box.innerHTML = '请将文件拖至此区域'      //区域内变回原来样式
+}, false);
+ 
+//只要鼠标拖拽悬停在该区域就会触发
+box.addEventListener('dragover', function(e){
+    e.preventDefault();     //注意，如果dragover不阻止默认事件，drop事件就不会触发
+    console.log('dragover');
+}, false);
+ 
+//鼠标拖拽释放
+box.addEventListener('drop', function(e){
+    e.preventDefault();     //浏览器默认会打开该文件，因此停掉该默认事件
+    console.log(e.dataTransfer.files);      //选中的文件
+}, false);
+//鼠标拖拽释放
+box.addEventListener('drop', function(e){
+    e.preventDefault();     //浏览器默认会打开该文件，因此停掉该默认事件
+    // console.log(e.dataTransfer.files);      //选中的文件
+    var files = e.dataTransfer.files;
+    console.log(files)
+    var formData = new FormData();
+    
+    Array.prototype.slice.call(files).forEach(function(file){
+        formData.append('file', file);
+    });
+    
+    var xhr = new XMLHttpRequest();
+    xhr.upload.onerror = function(){
+        alert('上传出错');
+    }
+    xhr.upload.onload = function(){
+        alert('上传成功');
+    }
+    xhr.upload.onprogress = function(e){
+        document.querySelector('progress').value = Math.floor(100*e.loaded/e.total);
+    }
+    xhr.open('post', '/upload', true);
+    xhr.send(formData)
+}, false);
+    </script>
+</body>
+</html>
