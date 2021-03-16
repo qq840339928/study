@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function f1 () {
+            return 'f1'
+            // setTimeout(() => {
+            //     console.log('f1')
+            // }, 3000);
+            // return new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //         resolve('f11')
+            //     }, 3000);
+            // })
+        }
+        async function f2 () {
+            let a = await f1()
+            console.log(f1)
+            console.log(123)
+        }
+        f2()
+    </script>
+</body>
+</html>

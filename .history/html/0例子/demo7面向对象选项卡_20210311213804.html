@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            width: 36px;
+        }
+        .active{
+            background-color: #ccc;
+        }
+        #tab div{
+          width: 200px;
+          height: 200px;
+          background-color: cyan;  
+          border: 1px solid black;
+          display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab">
+        <input class="active" type="text" value="选项1">
+        <input type="text" value="选项2">
+        <input type="text" value="选项3">
+        <div style="display: block;">选项1的内容</div>
+        <div>选项2的内容</div>
+        <div>选项3的内容</div>
+    </div>
+    <script>
+        function tabNode (val) {
+            // 定义
+            this.varNode(val)
+            // 事件
+            this.eventNode()
+            // 定时器
+            this.setInterval()
+        }
+        tabNode.prototype = {
+            'varNode': function (val) {
+                this.allInput = val.node.getElementsByTagName('input')
+                this.allDiv = val.node.getElementsByTagName('div')
+                this.intervalTime = val.intervalTime
+            },
+            'eventNode': function () {
+                let _this = this
+                for (let index = 0; index < this.allInput.length; index++) {
+                    this.allInput[index].index = index
+                    this.allInput[index].onclick = function () {
+                        for (let index = 0; index < _this.allInput.length; index++) {
+                            _this.allInput[index].className = ''
+                            _this.allDiv[index].style.display = 'none'
+                        }
+                        this.className = 'active'
+                        _this.allDiv[this.index].style.display = 'block'
+                    }
+                }
+            },
+            // 循环打开每个选项卡
+            'setInterval': function () {
+                this.index = 0
+                this.interval = setInterval(() => {
+                    for (let index = 0; index < this.allInput.length; index++) {
+                        this.allInput[index].className = ''
+                        this.allDiv[index].style.display = 'none'
+                    }
+                    this.allInput[this.index].className = 'active'
+                    this.allDiv[this.index].style.display = 'block'
+                    this.index++
+                    if (this.index === 3) {
+                        this.index =0
+                    }
+                }, intervalTime);
+            }
+        }
+        new tabNode({
+            node: document.getElementById('tab'),
+            intervalUse: true,
+            intervalTime: 1000
+        })
+    </script>
+</body>
+</html>

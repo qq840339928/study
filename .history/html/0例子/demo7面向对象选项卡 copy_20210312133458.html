@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function download() {
+            // 拿参数
+            let uri = ''
+            // window.open(uri) // 检查更新，如果不好使就用下面的方法
+            const elt = document.createElement('a');
+            elt.setAttribute('href', uri);
+            elt.style.display = 'none';
+            document.body.appendChild(elt);
+            elt.click();
+            document.body.removeChild(elt);
+        }
+    </script>
+</body>
+</html>

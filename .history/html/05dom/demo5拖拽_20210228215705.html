@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .drag {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="drag"></div>
+    <script>
+        window.onload = function () {
+            window.onmousedown = () => {
+                if (event.target.className === 'drag') {
+                    let a = event.target
+                    window.onmousemove = (event) => {
+                        console.log(event.offsetX, event.offsetY)
+                        a.style.left = event.offsetX + 'px'
+                        a.style.top = event.offsetY + 'px'
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+</style>
+<body>
+    <div></div>
+    <button onclick="test1">1</button>
+    <script>
+        window.onload = function () {
+            let dom = document.getElementsByTagName('div')[0]
+            console.log(dom)
+            console.log(window.screen)
+            dom.onclick = function () {
+                setInterval(() => {
+                    if (dom.offsetHeight < window.screen.availHeight) {
+                        dom.style.height =  dom.offsetHeight + 10 + 'px'
+                    } else {
+                        dom.style.height = window.screen.availHeight
+                    }
+                    if (dom.offsetWidth < window.screen.availWidth) {
+                        dom.style.width  =  dom.offsetWidth + 10 + 'px'
+                    } else {
+                        dom.style.width  = window.screen.availWidth
+                    }
+                }, 100);
+            }
+        }
+        function test1() {
+            alert(1)
+        }
+    </script>
+</body>
+</html>

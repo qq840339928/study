@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <script>
+        window.onload = () => {
+            let div = document.createElement('div')
+            div.setAttribute('width','10px')
+            div.setAttribute('height','10px')
+            div.style.backgroundColor = 'red'
+            console.log(div)
+            let pDiv = document.getElementById('d1')
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .drag {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+        .drag:active{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="drag"></div>
+    <div class="drag"></div>
+    <div class="drag"></div>
+    <div class="drag"></div>
+    <script>
+        window.onload = function () {
+            window.onmousedown = () => {
+                if (event.target.className === 'drag') {
+                    let div = event.target
+                    let l = event.clientX - div.offsetLeft // 应该向左偏移的量 也就是点击时鼠标距离div左边框的距离
+                    let t = event.clientY - div.offsetTop
+                    window.onmousemove = (event) => {
+                        div.style.left = 0
+                        div.style.right = 0
+                        div.style.top = 0
+                        div.style.bottom = 0
+                        div.style.left = event.clientX - l + 'px'
+                        div.style.top = event.clientY - t + 'px'
+                    }
+                    window.onmouseup = () => {
+                        window.onmousemove = null
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
