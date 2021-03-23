@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+</head>
+<style>
+    html,body{
+        height: 100%;
+        overflow-x: hidden;
+        background-color: black;
+    }
+    *{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    ul{
+        display: flex;
+        flex-direction: row;
+        width: 400%;
+        height: 80%;
+    }
+    li{
+        width: 25%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+    ol{
+        background-color: white;
+        height: 5%;
+        display: flex;
+        flex-direction: row;
+        justify-content:space-evenly;
+    }
+    ol > li{
+        justify-items: center;
+        width: 15%;
+        background-color: rgb(75, 33, 33);
+        border-radius: 20px;
+    }
+    .active{
+        background-color: coral;
+    }
+</style>
+<body>
+    <ul id="ulDiv">
+        <li><img src="./demo1Images/1.jfif" alt=""></li>
+        <li><img src="./demo1Images/2.jpg" alt=""></li>
+        <li><img src="./demo1Images/3.jfif" alt=""></li>
+        <li><img src="./demo1Images/4.jfif" alt=""></li>
+    </ul>
+    <ol id="olDiv">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+    <script>
+        // 拖拽，让轮播图可动
+        let ulDiv = document.getElementById('ulDiv')
+        let oldLeft = 0 // 手指最开始点击的X坐标
+        let moveX = 0 // 需要移动的距离
+        let imgIndex = 0 // 当前是第几张图
+        let liDoms = ulDiv.children
+        let olIndex = 1 // 当前下方按钮的index
+        let olDiv = document.getElementById('olDiv')
+        myTimer()
+        document.addEventListener('touchstart', function (e) {
+            ulDiv.style.transition = '0.0s'
+            oldLeft = e.targetTouches[0].clientX
+            // 如果点击的是第一张，则把最后一张拿到第一张前面
+            if (imgIndex === 0) {
+                ulDiv.insertBefore(liDoms[liDoms.length-1], liDoms[0])
+                moveRight(true)
+            }
+            // 如果点击的是最后一张，则把第一张拿到最后一张后面
+            if (imgIndex === liDoms.length -1) {
+                ulDiv.appendChild(liDoms[0],ulDiv)
+                moveLeft(true)
+            }
+        },false)
+        document.addEventListener('touchmove', function (e) {
+            moveX = e.targetTouches[0].clientX - oldLeft
+            ulDiv.style.transform = 'translateX(' + (moveX + (-innerWidth * imgIndex)) +'px)'
+        },false)
+        document.addEventListener('touchend', function (e) {
+            ulDiv.style.transition = '0.3s'
+            if (moveX > 60) { // 左翻页
+                moveLeft()
+            } else if (moveX <-60) { // 移动了60px就换下一张 右翻页
+                moveRight()
+            } else {
+                ulDiv.style.transform = 'translateX(' + (-innerWidth * imgIndex) + 'px)'
+            }
+        },false)
+        function moveRight(flag1,flag2) { //flag1是第一次挪动调用的
+            if (flag2) {
+                ulDiv.style.transition = '0.8s'
+            }
+            console.log('right', ulDiv.style.transition)
+            imgIndex ++
+            ulDiv.style.transform = 'translateX(' + (-innerWidth * imgIndex) + 'px)'
+            // ol的
+            if (flag1) {
+                return
+            }
+            olIndex++
+            if (olIndex === 5) {
+                olIndex = 1
+            }
+            for (let index = 0; index < olDiv.children.length; index++) {
+                const element = olDiv.children[index];
+                element.className = ''
+                if (index === olIndex-1) {
+                    element.className = 'active'
+                }
+            }
+        }
+        function moveLeft(flag1,flag2) {
+            if (flag2) {
+                ulDiv.style.transition = '0.8s'
+            }
+            console.log('left', ulDiv.style.transition)
+            imgIndex --
+            ulDiv.style.transform = 'translateX(' + (-innerWidth * imgIndex) + 'px)'
+            // ol的
+            if (flag1) {
+                return
+            }
+            olIndex--
+            if (olIndex === 0) {
+                olIndex = liDoms.length
+            }
+            for (let index = 0; index < olDiv.children.length; index++) {
+                const element = olDiv.children[index];
+                element.className = ''
+                if (index === olIndex-1) {
+                    element.className = 'active'
+                }
+            }
+        }
+        function myTimer () { // 定时向右翻页
+            let flag = false
+            setInterval(() => {
+                if (flag) {
+                    // 如果点击的是第一张，则把最后一张拿到第一张前面
+                    if (imgIndex === 0) {
+                        ulDiv.style.transition = '0.0s'
+                        ulDiv.insertBefore(liDoms[liDoms.length-1], liDoms[0])
+                        moveRight(true)
+                    }
+                    // 如果点击的是最后一张，则把第一张拿到最后一张后面
+                    if (imgIndex === liDoms.length -1) {
+                        ulDiv.style.transition = '0.0s'
+                        ulDiv.appendChild(liDoms[0],ulDiv)
+                        moveLeft(true)
+                    }
+                }
+                moveRight(false,true)
+                flag = true
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>memory leak</title>
+</head>
+<body>
+  <div id="first">
+    <div id="second">
+      <button id="button">冒泡</button>
+    </div>
+  </div>
+  <script>
+    var button = document.getElementById('button'),
+        second = document.getElementById('second'),
+        first = document.getElementById('first'),
+        body = document.body,
+        html = document.documentElement;
+    button.addEventListener('click', function () {
+      alert('button');
+    });
+    second.addEventListener('click', function () {
+      alert('second');
+    });
+    first.addEventListener('click', function () {
+      alert('first');
+    });
+    body.addEventListener('click', function () {
+      alert('body');
+    });
+    html.addEventListener('click', function () {
+      alert('html');
+    });
+    window.addEventListener('click', function () {
+      alert('window');
+    });
+  </script>
+</body>
+</html>

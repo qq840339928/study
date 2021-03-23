@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.125, maximum-scale=1.125, user-scalable=0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <img src="222.png" alt="">
+    <script>
+        let width = document.body.scrollWidth
+        let scale = width / 320
+        console.log(scale)
+        let content = 'width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=0'
+        document.getElementsByTagName('meta')[0].setAttribute('content', content)
+    </script>
+</body>
+</html>
