@@ -1,3 +1,0 @@
-class HistoryRoute {
-    constructor
-}

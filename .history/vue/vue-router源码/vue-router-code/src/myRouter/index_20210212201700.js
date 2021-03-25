@@ -1,5 +1,0 @@
-class HistoryRoute {
-    constructor () {
-        this.
-    }
-}

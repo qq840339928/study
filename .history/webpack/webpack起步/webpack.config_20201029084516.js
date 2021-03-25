@@ -1,4 +1,0 @@
-moudle.exports = {
-    entry: '',
-    output: ''
-}

@@ -1,1 +1,0 @@
-var pDom = document.getElementById('message')
