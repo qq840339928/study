@@ -1,0 +1,1 @@
+let d = require('./demo2.js')

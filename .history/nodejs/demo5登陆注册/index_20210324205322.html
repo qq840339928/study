@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    账号：<input id="username" type="text"> <br>
+    密码：<input id="password" type="password"><br>
+    <button onclick="register()">注册</button onclick="login()"><button>登陆</button>
+    <script>
+        function register () {
+            // 封装ajax
+            let username = document.getElementById('username').value
+            let password = document.getElementById('password').value
+            ajax({
+                method: 'get',
+                url: 'http://127.0.0.1:3000',
+                data: {
+                    username: username,
+                    password: password
+                },
+                success: function (data) {
+                    console.log('success:' + data)
+                },
+                error: function (error) {
+                    console.log('faild:' + error)
+                }
+            })
+        }
+        function ajax(json) {
+            console.log(json.data)
+            let xhr = {}
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest()
+            } else {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                        json.success(xhr.responseText)
+                    } else {
+                        json.error(xhr.responseText)
+                    }
+                }
+            }
+            if (json.type === 'get') {
+                xhr.open('get', json.url + jsonToString(json.data), true)
+                xhr.send()
+            } else {
+                xhr.open('post', json.url, true)
+                xhr.send(jsonToString(json.data))
+            }
+        }
+        function jsonToString(json) {
+            for (const key in json) {
+                if (json.hasOwnProperty(key)) {
+                    const element = json[key];
+                    console.log(element)
+                }
+            }
+        }
+    </script>
+</body>
+</html>
